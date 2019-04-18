@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    <a class="navbar-brand" routerLink="inicio">
+        <img src="./assets/images/angular.png" width="30" height="30" alt="logo angular"> Post FullStack
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+    <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="inicio">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Posts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Categorías</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Usuarios</a>
+            </li>
+        </ul>
+
+        <!-- <form class="form-inline my-2 my-lg-0 mr-3">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar Post" aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> Buscar</button>
+        </form> -->
+        <!-- <div class="btn-group">
+            <a href="#" class="btn btn-info ">Iniciar Sesión</a>
+            <a href="#" class="btn btn-danger">Regístro</a>
+        </div> -->
+        <ul class="navbar-nav navbar-right">
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="login">Login</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="registro">Registro</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav navbar-right">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              nombre de usuario
+            </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Crear Categoría</a>
+                    <a class="dropdown-item" href="#">Crear post</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Mi perfil</a>
+                    <a class="dropdown-item" href="#">Ajustes</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
