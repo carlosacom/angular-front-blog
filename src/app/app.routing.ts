@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 const ROUTES: Routes = [
     { path: 'inicio', component: HomeComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'logout/:sure', component: LoginComponent },
     { path: 'registro', component: RegisterComponent},
     { path: '**', pathMatch:'full', redirectTo:'inicio' }
 ];

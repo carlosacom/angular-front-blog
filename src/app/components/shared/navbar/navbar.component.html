@@ -26,31 +26,33 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Buscar Post" aria-label="Search">
             <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> Buscar</button>
         </form> -->
-        <!-- <div class="btn-group">
-            <a href="#" class="btn btn-info ">Iniciar Sesión</a>
-            <a href="#" class="btn btn-danger">Regístro</a>
-        </div> -->
-        <ul class="navbar-nav navbar-right">
-            <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" routerLink="login">Login</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" routerLink="registro">Registro</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav navbar-right">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              nombre de usuario
-            </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Crear Categoría</a>
-                    <a class="dropdown-item" href="#">Crear post</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Mi perfil</a>
-                    <a class="dropdown-item" href="#">Ajustes</a>
-                </div>
-            </li>
-        </ul>
+        <ng-container *ngIf="userIdentity; then userNavTemplate; else identityTemplate"></ng-container>
+        <ng-template #userNavTemplate>
+            <ul class="navbar-nav navbar-right">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ userIdentity.name + ' ' + userIdentity.surname }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Crear Categoría</a>
+                        <a class="dropdown-item" href="#">Crear post</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Mi perfil</a>
+                        <a class="dropdown-item" href="#">Ajustes</a>
+                        <a class="dropdown-item" [routerLink]="['/logout/yes']">Salir</a>
+                    </div>
+                </li>
+            </ul>
+        </ng-template>
+        <ng-template #identityTemplate>
+            <ul class="navbar-nav navbar-right">
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="login">Login</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="registro">Registro</a>
+                </li>
+            </ul>
+        </ng-template>
     </div>
 </nav>
