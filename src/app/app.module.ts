@@ -18,6 +18,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
+import { NewCategoryComponent } from './components/new-category/new-category.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LoadingComponent } from './components/shared/loading/loading.component'
     RegisterComponent,
     HomeComponent,
     UserEditComponent,
-    LoadingComponent
+    LoadingComponent,
+    NewCategoryComponent
   ],
   imports: [
     BrowserModule,
