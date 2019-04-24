@@ -1,0 +1,49 @@
+<h1>{{ page_title }}</h1>
+<div class="col-md-5 mx-auto my-4 text-center">
+    <ng-container *ngIf="user.image; then ImgTemplate; else noimgTemplate"></ng-container>
+    <ng-template #ImgTemplate>
+        <img [src]="'http://localhost:8000/images/'+user.image" alt="Imagen del usuario" class="img-fluid rounded-circle w-50">
+    </ng-template>
+    <ng-template #noimgTemplate>
+        <img src="./assets/images/noimage.png" alt="Imagen del usuario" class="img-fluid rounded-circle w-50">
+    </ng-template>
+
+    <br>
+
+    <angular-file-uploader [config]="afuConfig" (ApiResponse)="AvatarUpload($event)">
+    </angular-file-uploader>
+</div>
+<ng-container *ngIf="loading; then loadingTemplate; else formTemplate"></ng-container>
+<ng-template #loadingTemplate>
+    <app-loading></app-loading>
+</ng-template>
+<ng-template #formTemplate>
+    <form #editUserForm="ngForm" (ngSubmit)="onSubmit(editUserForm)">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input class="form-control" type="text" name="name" id="name" #name="ngModel" [(ngModel)]="user.name" required>
+                    <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">El nombre es invalido</small>
+                </div>
+                <div class="form-group">
+                    <label for="surname">Apellidos</label>
+                    <input class="form-control" type="text" name="surname" id="surname" #surname="ngModel" [(ngModel)]="user.surname" required>
+                    <small *ngIf="!surname.valid && surname.touched" class="invalid-feedback d-block">El apellido es invalido</small>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input class="form-control" type="email" name="email" id="email" #email="ngModel" [(ngModel)]="user.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                    <small *ngIf="!email.valid && email.touched" class="invalid-feedback d-block">El email es invalido</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="description">Descripción</label>
+                    <textarea [froalaEditor]="froalaOtions" name="description" id="description" class="form-control" rows="3" #description="ngModel" [(ngModel)]="user.description"></textarea>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!editUserForm.form.valid"><i class="fas fa-user-edit"></i> Editar Perfil</button>
+    </form>
+</ng-template>

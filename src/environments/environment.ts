@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   localUser: 'FullStack-User',
   localToken: 'FullStack-Token',
+  urlBackend: 'http://localhost:8000',
 };
 
 /*

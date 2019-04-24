@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <a class="navbar-brand" routerLink="inicio">
         <img src="./assets/images/angular.png" width="30" height="30" alt="logo angular"> Post FullStack
     </a>
@@ -29,6 +29,15 @@
         <ng-container *ngIf="userIdentity; then userNavTemplate; else identityTemplate"></ng-container>
         <ng-template #userNavTemplate>
             <ul class="navbar-nav navbar-right">
+                <li class="nav-item d-flex align-items-center">
+                    <ng-container *ngIf="image; then ImgTemplate; else noimgTemplate"></ng-container>
+                    <ng-template #ImgTemplate>
+                        <img [src]="'http://localhost:8000/images/'+image" alt="Imagen del usuario" width="30" class="img-fluid rounded-circle align-middle">
+                    </ng-template>
+                    <ng-template #noimgTemplate>
+                        <img src="./assets/images/noimage.png" alt="Imagen del usuario" width="30" class="img-fluid rounded-circle align-middle">
+                    </ng-template>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ userIdentity.name + ' ' + userIdentity.surname }}
@@ -38,7 +47,7 @@
                         <a class="dropdown-item" href="#">Crear post</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Mi perfil</a>
-                        <a class="dropdown-item" href="#">Ajustes</a>
+                        <a class="dropdown-item" routerLink="editar-perfil">Ajustes</a>
                         <a class="dropdown-item" [routerLink]="['/logout/yes']">Salir</a>
                     </div>
                 </li>
