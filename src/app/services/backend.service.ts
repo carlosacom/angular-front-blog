@@ -4,6 +4,7 @@ import { User } from '../models/user';
 import { UserAuthService } from './user-auth.service';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Category } from '../models/category';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class BackendService {
   }
 
   // queries que se consumen
-  getQuery(path: string, token: boolean = false ): Observable<any> {
+  getQuery (path: string, token: boolean = false ): Observable<any> {
     const url = `${this.urlBackend}${path}`;
     if (token) {
       const headers: HttpHeaders = new HttpHeaders().set('authorization', this._user.getToken());
@@ -28,38 +29,44 @@ export class BackendService {
     }
   }
 
-  postQuery(path: string, data: any, token: boolean = false, ): Observable<any> {
+  postQuery (path: string, data: any, token: boolean = false, ): Observable<any> {
     const url = `${this.urlBackend}${path}`;
     const params = JSON.stringify(data);
     const headers: HttpHeaders = (token) ? new HttpHeaders().set('Content-Type', 'application/json').set('authorization', this._user.getToken() ) : new HttpHeaders().set('Content-Type', 'application/json') ;
     return this.http.post(url, params, { headers });
   }
-  putQuery(path: string, data: any ): Observable<any> {
+  putQuery (path: string, data: any ): Observable<any> {
     const url = `${this.urlBackend}${path}`;
     const params = JSON.stringify(data);
     const headers: HttpHeaders = new HttpHeaders().set('Content-Type', 'application/json').set('authorization', this._user.getToken());
     return this.http.put(url, params, { headers });
   }
   // metodos que consumen http
-  register(newUser: User): Observable<any> {
+  register (newUser: User): Observable<any> {
     return this.postQuery('/register', newUser)
   }
-  login(user: User): Observable<any> {
+  login (user: User): Observable<any> {
     return this.postQuery('/login', user)
   }
-  user(id: number): Observable<any> {
+  user (id: number): Observable<any> {
     return this.getQuery(`/user/${id}`, true)
   }
-  editUser(user: User): Observable<any> {
+  editUser (user: User): Observable<any> {
     return this.putQuery('/user', user);
   }
-  test(): Observable<any> {
+  test (): Observable<any> {
     return this.getQuery('/posts')
   }
-  posts(): Observable<any> {
+  posts (): Observable<any> {
     return this.getQuery('/posts')
   }
-  post(id: number): Observable<any> {
+  post (id: number): Observable<any> {
     return this.getQuery(`/posts/${id}`)
+  }
+  newCategory (category: Category): Observable<any> {
+    return this.postQuery('/category', category, true);
+  }
+  categories (): Observable<any> {
+    return this.getQuery('/category');
   }
 }
