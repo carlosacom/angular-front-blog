@@ -19,6 +19,7 @@ import { HomeComponent } from './components/home/home.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { NewCategoryComponent } from './components/new-category/new-category.component';
+import { NewPostComponent } from './components/new-post/new-post.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NewCategoryComponent } from './components/new-category/new-category.com
     HomeComponent,
     UserEditComponent,
     LoadingComponent,
-    NewCategoryComponent
+    NewCategoryComponent,
+    NewPostComponent
   ],
   imports: [
     BrowserModule,

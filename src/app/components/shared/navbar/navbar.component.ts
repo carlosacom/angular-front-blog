@@ -29,23 +29,14 @@ export class NavbarComponent implements OnInit, DoCheck {
   }
   getImage() {
     this.backend.user(this.userIdentity.sub).subscribe(
-      response => {
-        this.image = response.image;
-      },
-      error => {
-        console.log(<any>error);
-      }
+      response => this.image = response.image,
+      error => console.log(<any>error)
     );
   }
   getCategories(): void {
     this.backend.categories().subscribe(
-      response => {
-        this.categories = response;
-        console.log(response);
-      },
-      error => {
-        console.log(<any>error);
-      }
+      response => this.categories = response,
+      error => console.log(<any>error)
     );
   }
   
