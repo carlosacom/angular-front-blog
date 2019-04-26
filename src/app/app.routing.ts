@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { NewCategoryComponent } from './components/new-category/new-category.component';
 import { NewPostComponent } from './components/new-post/new-post.component';
+import { PostComponent } from './components/post/post.component';
 
 const ROUTES: Routes = [
     { path: 'inicio', component: HomeComponent },
@@ -16,6 +17,7 @@ const ROUTES: Routes = [
     { path: 'editar-perfil', component: UserEditComponent},
     { path: 'categoria/nueva', component: NewCategoryComponent},
     { path: 'post/nuevo', component: NewPostComponent },
+    { path: 'post/:id', component: PostComponent },
     { path: '**', pathMatch:'full', redirectTo:'inicio' }
 ];
 

@@ -1,7 +1,38 @@
 <h1>{{ page_title }}</h1>
+<p>Crear un nuevo post</p>
 <div class="my-4">
-    <pre>
+    <ng-container *ngIf="post.image; then ImgTemplate; else noimgTemplate"></ng-container>
+    <ng-template #ImgTemplate>
+        <img [src]="'http://localhost:8000/images/'+post.image" width="200px;" alt="Imagen del usuario" class="img-fluid">
+    </ng-template>
+    <ng-template #noimgTemplate>
+        <img src="./assets/images/noimage.png" alt="Imagen del usuario" width="200px;" class="img-fluid">
+    </ng-template>
 
-        {{ categories | json }}
-    </pre>
+    <br>
+    <angular-file-uploader [config]="afuConfig" (ApiResponse)="imageUpload($event)">
+    </angular-file-uploader>
+    <ng-container *ngIf="loading; then loadingTemplate; else formTemplate"></ng-container>
+    <ng-template #loadingTemplate>
+        <app-loading [color]="'text-primary'"></app-loading>
+    </ng-template>
+    <ng-template #formTemplate>
+        <form #postForm="ngForm" (submit)="onSubmit(postForm)">
+            <div class="form-group">
+                <label for="title">Titulo del Post</label>
+                <input type="text" name="title" id="title" class="form-control" placeholder="Titulo del post" #title="ngModel" [(ngModel)]="post.title" required>
+            </div>
+            <div class="form-group">
+                <label for="category">Categoría</label>
+                <select class="form-control" name="category" id="category" #category="ngModel" [(ngModel)]="post.category_id" required>
+                  <option [value]="category.id" *ngFor="let category of categories">{{ category.name }}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="content">Descripción</label>
+                <textarea [froalaEditor]="froalaOtions" name="content" id="content" class="form-control" rows="3" #content="ngModel" [(ngModel)]="post.content"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success" [disabled]="postForm.invalid">Publicar Post</button>
+        </form>
+    </ng-template>
 </div>

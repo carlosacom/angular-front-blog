@@ -85,7 +85,7 @@ export class UserEditComponent implements OnInit {
       }
     );
   }
-  AvatarUpload(dataImage): void {
+  AvatarUpload(dataImage: any): void {
     console.log(dataImage);
     const response = JSON.parse(dataImage.response);
     if (dataImage.status == 200) {

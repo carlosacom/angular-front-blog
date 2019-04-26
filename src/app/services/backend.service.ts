@@ -5,6 +5,7 @@ import { UserAuthService } from './user-auth.service';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Category } from '../models/category';
+import { Post } from '../models/post';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class BackendService {
   }
 
   // queries que se consumen
-  getQuery (path: string, token: boolean = false ): Observable<any> {
+  private getQuery (path: string, token: boolean = false ): Observable<any> {
     const url = `${this.urlBackend}${path}`;
     if (token) {
       const headers: HttpHeaders = new HttpHeaders().set('authorization', this._user.getToken());
@@ -29,13 +30,13 @@ export class BackendService {
     }
   }
 
-  postQuery (path: string, data: any, token: boolean = false, ): Observable<any> {
+  private postQuery (path: string, data: any, token: boolean = false, ): Observable<any> {
     const url = `${this.urlBackend}${path}`;
     const params = JSON.stringify(data);
     const headers: HttpHeaders = (token) ? new HttpHeaders().set('Content-Type', 'application/json').set('authorization', this._user.getToken() ) : new HttpHeaders().set('Content-Type', 'application/json') ;
     return this.http.post(url, params, { headers });
   }
-  putQuery (path: string, data: any ): Observable<any> {
+  private putQuery (path: string, data: any ): Observable<any> {
     const url = `${this.urlBackend}${path}`;
     const params = JSON.stringify(data);
     const headers: HttpHeaders = new HttpHeaders().set('Content-Type', 'application/json').set('authorization', this._user.getToken());
@@ -63,10 +64,13 @@ export class BackendService {
   post (id: number): Observable<any> {
     return this.getQuery(`/posts/${id}`)
   }
+  newPost (post: Post) :Observable<any> {
+    return this.postQuery('/posts',post,true)
+  }
   newCategory (category: Category): Observable<any> {
-    return this.postQuery('/category', category, true);
+    return this.postQuery('/category', category, true)
   }
   categories (): Observable<any> {
-    return this.getQuery('/category');
+    return this.getQuery('/category')
   }
 }

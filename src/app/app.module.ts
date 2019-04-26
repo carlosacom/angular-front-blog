@@ -20,6 +20,8 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { NewCategoryComponent } from './components/new-category/new-category.component';
 import { NewPostComponent } from './components/new-post/new-post.component';
+import { PostComponent } from './components/post/post.component';
+import { CardPostComponent } from './components/card-post/card-post.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { NewPostComponent } from './components/new-post/new-post.component';
     UserEditComponent,
     LoadingComponent,
     NewCategoryComponent,
-    NewPostComponent
+    NewPostComponent,
+    PostComponent,
+    CardPostComponent
   ],
   imports: [
     BrowserModule,

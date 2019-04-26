@@ -1,0 +1,21 @@
+<ng-container *ngIf="loading; then loadingTemplate; else postTemplate"></ng-container>
+<ng-template #loadingTemplate>
+    <app-loading></app-loading>
+</ng-template>
+<ng-template #postTemplate>
+    <ng-container *ngIf="messageError; then messageTemplate; else dataTemplate"></ng-container>
+    <ng-template #messageTemplate>
+        <div class="alert alert-danger my-4" role="alert">
+            <strong>Error</strong> {{ messageError }}
+        </div>
+    </ng-template>
+    <ng-template #dataTemplate>
+        <h1>{{ page_title }}</h1>
+        <div class="my-4">
+            {{ post.content }}
+            <pre>
+            {{ post  | json }}
+          </pre>
+        </div>
+    </ng-template>
+</ng-template>
